@@ -1,25 +1,28 @@
 #! /bin/bash
 cd ~/Downloads
-dirList=`ls ${prefix}*.pdf`
-set pdfList = $[]
-set pdfName = $""
+
+
+
+fileExtesion='*.mkv *.pdf'
+dirList=`ls ${fileExtesion}`
+pdfList=()
+pdfName=''
+
+echo $dirList
 for dir in $dirList;
 do
-    #echo $dir
-    
     if [[ "$pdfName" == "" ]];
     then
-        pdfName = $dir
-        echo "Empty value: "pdfName
+        pdfName=$dir
     else
-        pdfName = "${pdfName} ${dir}"
-        echo "value: "pdfName
+        pdfName="${pdfName} ${dir}"
     fi
 
-    echo $pdfName
-    if [[ "$dir" == *".pdf" ]]; 
+    if [[ "$pdfName" == $fileExtesion ]]; 
     then 
-        echo "Document Names: ${pdfName}"
-        pdfName = ""
+        pdfList+=",${pdfName}"
+        pdfName=""
     fi
 done
+
+echo $pdfList
